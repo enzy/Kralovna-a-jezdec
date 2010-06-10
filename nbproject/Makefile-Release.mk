@@ -33,7 +33,12 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/ChessBoard.o \
+	${OBJECTDIR}/Knight.o \
+	${OBJECTDIR}/Pawn.o \
+	${OBJECTDIR}/Queen.o \
+	${OBJECTDIR}/Square.o
 
 
 # C Compiler Flags
@@ -54,16 +59,41 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	${MAKE}  -f nbproject/Makefile-Release.mk dist/Release/Cygwin-Windows/semestralka.exe
+	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/Cygwin-Windows/semestralka.exe
 
 dist/Release/Cygwin-Windows/semestralka.exe: ${OBJECTFILES}
 	${MKDIR} -p dist/Release/Cygwin-Windows
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/semestralka ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
-${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
+${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/ChessBoard.o: ChessBoard.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ChessBoard.o ChessBoard.cpp
+
+${OBJECTDIR}/Knight.o: Knight.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Knight.o Knight.cpp
+
+${OBJECTDIR}/Pawn.o: Pawn.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Pawn.o Pawn.cpp
+
+${OBJECTDIR}/Queen.o: Queen.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Queen.o Queen.cpp
+
+${OBJECTDIR}/Square.o: Square.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Square.o Square.cpp
 
 # Subprojects
 .build-subprojects:

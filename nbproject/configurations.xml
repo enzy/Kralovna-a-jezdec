@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="65">
+<configurationDescriptor version="69">
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -15,6 +15,16 @@
                    displayName="Source Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
+      <itemPath>ChessBoard.cpp</itemPath>
+      <itemPath>ChessBoard.h</itemPath>
+      <itemPath>Knight.cpp</itemPath>
+      <itemPath>Knight.h</itemPath>
+      <itemPath>Pawn.cpp</itemPath>
+      <itemPath>Pawn.h</itemPath>
+      <itemPath>Queen.cpp</itemPath>
+      <itemPath>Queen.h</itemPath>
+      <itemPath>Square.cpp</itemPath>
+      <itemPath>Square.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -29,6 +39,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
