@@ -33,13 +33,6 @@ Square::Square(int pieceType) {
     }
 }
 
-Square::Square(const Square& orig) {
-    hasPiece = orig.hasPiece;
-    hasKnight = orig.hasKnight;
-    hasPawn = orig.hasPawn;
-    hasQueen = orig.hasQueen;
-}
-
 void Square::erase(){
     hasPiece = hasKnight = hasPawn = hasQueen = false;
 }
@@ -77,7 +70,7 @@ void Square::printToStd() {
     else if (isKnight()) cout << "N";
     else if (isPawn()) cout << "P";
     else if (isQueen()) cout << "Q";
-    cout << " |";
+    cout << " ";
 }
 
 bool Square::isEmpty() {

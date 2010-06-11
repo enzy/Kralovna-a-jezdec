@@ -16,26 +16,21 @@
 #include <iostream>
 using namespace std;
 
+#include <ctime>
+
 ChessBoard::ChessBoard() {
     width = height = 8; // Standart size of Chessboard
-    pawnCount = 8; // Standart count of pawns
-    queenCount = 1;
-    knightCount = 1;
-    
-    allocateMemory();    
+    pawnCount = queenCount = knightCount = 0;
+    freeSquares = width * height;
 
-    // TODO : Place pawns
-
-    // TODO : Place queens
-
-    // TODO : Place knights
+    allocateMemory();
 }
-ChessBoard::ChessBoard(int boardWidth, int boardHeight){
+
+ChessBoard::ChessBoard(int boardWidth, int boardHeight) {
     width = boardWidth;
     height = boardHeight;
-    pawnCount = 8;
-    queenCount = 1;
-    knightCount = 1;
+    pawnCount = queenCount = knightCount = 0;
+    freeSquares = width * height;
 
     allocateMemory();
 }
@@ -50,9 +45,6 @@ bool ChessBoard::allocateMemory() {
     else return false;
 }
 
-ChessBoard::ChessBoard(const ChessBoard& orig) {
-}
-
 ChessBoard::~ChessBoard() {
     // Memory de-allocation to prevent memoty leak
     for (int i = 0; i < width; i++) {
@@ -62,12 +54,96 @@ ChessBoard::~ChessBoard() {
     // TODO : dealokace jednotlich poli
 }
 
-void ChessBoard::printToStd(){
+void ChessBoard::printToStd() {
     for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            cout << "+---";
+        }
+
+        cout << "+" << endl;
+
         for (int j = 0; j < width; j++) {
             board[j][i].printToStd();
         }
-        cout << endl;
+        cout << "|" << endl;
     }
+
+    for (int i = 0; i < width; i++) {
+        cout << "+---";
+    }
+    cout << "+" << endl;
+
+}
+
+void ChessBoard::insertRandomPawns(int pawnCountToInsert) {
+    if (pawnCountToInsert > freeSquares) return;
+    int pawnCountInserted = 0;
+
+    srand(time(NULL)); // Initialize random seed
+
+    // Place pawns on random spots
+    while (pawnCountInserted < pawnCountToInsert) {
+
+        int randomX = rand() % width;
+        int randomY = rand() % height;
+
+        if (board[randomX][randomY].isEmpty()) {
+            board[randomX][randomY].setPawn();
+            pawnCountInserted++;
+        } else {
+            continue;
+        }
+
+    }
+
+    pawnCount += pawnCountInserted;
+    freeSquares -= pawnCountInserted;
+
+}
+
+void ChessBoard::insertRandomKnights(int knightCountToInsert) {
+    if (knightCountToInsert > freeSquares) return;
+    int knightCountInserted = 0;
+
+    srand(time(NULL)); // Initialize random seed
+
+    // Place knights on random spots
+    while (knightCountInserted < knightCountToInsert) {
+        int randomX = rand() % width;
+        int randomY = rand() % height;
+
+        if (board[randomX][randomY].isEmpty()) {
+            board[randomX][randomY].setKnight();
+            knightCountInserted++;
+        } else {
+            continue;
+        }
+    }
+
+    knightCount += knightCountInserted;
+    freeSquares -= knightCountInserted;
+}
+
+void ChessBoard::insertRandomQueens(int queenCountToInsert) {
+    if(queenCountToInsert > freeSquares) return;
+    int queenCountInserted = 0;
+
+    srand(time(NULL)); // Initialize random seed
+
+    // Place knights on random spots
+    while (queenCountInserted < queenCountToInsert) {
+        int randomX = rand() % width;
+        int randomY = rand() % height;
+
+        if (board[randomX][randomY].isEmpty()) {
+            board[randomX][randomY].setQueen();
+            queenCountInserted++;
+        } else {
+            continue;
+        }
+    }
+
+    queenCount += queenCountInserted;
+    freeSquares -= queenCountInserted;
 }
 

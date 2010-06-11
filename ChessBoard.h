@@ -10,20 +10,26 @@
 
 #include "Square.h"
 
-
+/**
+ * ChessBoard Class
+ */
 class ChessBoard {
 public:
     /**     
      * Create typical gameplay chessboard 8x8, 8 pawns, 1 queen, 1 knight
      */
     ChessBoard();
-    ChessBoard(const ChessBoard& orig);
+
     /**
      * Create custom chessboard, allowing non square cases
      * @param boardWidth in Squares
      * @param boardHeight in Squares
      */
     ChessBoard(int boardWidth, int boardHeight);
+
+    /**
+     * Desctructor, de-allocatte memory
+     */
     virtual ~ChessBoard();
 
     /**
@@ -44,7 +50,7 @@ public:
      * Number of pawns on chessboard
      */
     int pawnCount;
-    
+
     /**
      * Number of queens on chessboard
      */
@@ -60,6 +66,48 @@ public:
      */
     void printToStd();
 
+    /**
+     * Insert to chessboard random placed pawns
+     * @param pawnCountToInsert Number of pawns to insert
+     */
+    void insertRandomPawns(int pawnCountToInsert);
+
+    /**
+     * Insert single pawn on the specific position
+     * @param x from left side
+     * @param y from top side
+     * @return Success of operation
+     */
+    bool insertPawn(int x, int y);
+
+    /**
+     * Insert to chessboard random placed knights.
+     * @param knightCountToInsert Number of knights to insert
+     */
+    void insertRandomKnights(int knightCountToInsert);
+
+    /**
+     * Insert single knight on the specific position
+     * @param x from left side
+     * @param y from top side
+     * @return Success of operation
+     */
+    bool insertKnight(int x, int y);
+
+    /**
+     * Insert to chessboard random placed queens.
+     * @param queenCountToInsert Number of queens to insert
+     */
+    void insertRandomQueens(int queenCountToInsert);
+
+    /**
+     * Insert single queen on the specific position
+     * @param x from left side
+     * @param y from top side
+     * @return Success of operation
+     */
+    bool insertQueen(int x, int y);
+
 
 private:
     /**
@@ -67,6 +115,8 @@ private:
      * @return Success of memory alocation
      */
     bool allocateMemory();
+
+    int freeSquares;
 
 };
 

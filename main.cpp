@@ -17,6 +17,8 @@
 
 #include <cstdlib>
 
+#include "ChessBoard.h"
+
 using namespace std;
 
 /*
@@ -29,6 +31,17 @@ int main(int argc, char** argv) {
     // automaticky nebo rucni mod?
 
     // rucni mod - sirka, vyska; pocet pescu; umisteni;
+
+    ChessBoard * hra1 = new ChessBoard(4,4);
+    
+    hra1->insertRandomPawns(8);
+
+    hra1->insertRandomKnights(1);
+
+    hra1->insertRandomQueens(1);
+
+    hra1->printToStd();
+
 
     
 

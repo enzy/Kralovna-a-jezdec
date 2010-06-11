@@ -18,9 +18,7 @@ public:
      * Custom square type
      * @param pieceType [0 - empty, 1 - pawn, 2 - knight, 3 - queen]
      */
-    Square(int pieceType);
-    Square(const Square& orig);
-    virtual ~Square();
+    Square(int pieceType);        
 
     bool isPawn();    
     bool isKnight();
