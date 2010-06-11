@@ -1,6 +1,6 @@
 /* 
  * File:   Knight.h
- * Author: Enzy
+ * Author: Matěj Šimek - www.matejsimek.cz
  *
  * Created on 9. červen 2010, 18:19
  */

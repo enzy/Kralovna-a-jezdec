@@ -24,6 +24,14 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
+    // inicialization
+
+    // automaticky nebo rucni mod?
+
+    // rucni mod - sirka, vyska; pocet pescu; umisteni;
+
+    
+
     return 0;
 }
 

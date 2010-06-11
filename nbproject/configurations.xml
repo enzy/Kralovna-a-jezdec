@@ -51,6 +51,10 @@
         <platform>3</platform>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <commandLine>-pedantic</commandLine>
+          <warningLevel>3</warningLevel>
+        </ccTool>
       </compileType>
     </conf>
     <conf name="Release" type="1">
