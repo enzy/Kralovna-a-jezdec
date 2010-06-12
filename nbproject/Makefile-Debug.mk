@@ -33,11 +33,13 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Piece.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/ChessBoard.o \
 	${OBJECTDIR}/Knight.o \
 	${OBJECTDIR}/Pawn.o \
 	${OBJECTDIR}/Queen.o \
+	${OBJECTDIR}/Position.o \
 	${OBJECTDIR}/Square.o
 
 
@@ -65,6 +67,11 @@ dist/Debug/Cygwin-Windows/semestralka.exe: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/Cygwin-Windows
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/semestralka ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
+${OBJECTDIR}/Piece.o: Piece.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -Werror -MMD -MP -MF $@.d -o ${OBJECTDIR}/Piece.o Piece.cpp
+
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -89,6 +96,11 @@ ${OBJECTDIR}/Queen.o: Queen.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Werror -MMD -MP -MF $@.d -o ${OBJECTDIR}/Queen.o Queen.cpp
+
+${OBJECTDIR}/Position.o: Position.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -Werror -MMD -MP -MF $@.d -o ${OBJECTDIR}/Position.o Position.cpp
 
 ${OBJECTDIR}/Square.o: Square.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -8,11 +8,19 @@
 #ifndef KNIGHT_H
 #define	KNIGHT_H
 
-class Knight {
+#include "Piece.h"
+
+class Knight : Piece {
 public:
+    /**
+     * Create free knight no position (-1,-1)
+     */
     Knight();
-    Knight(const Knight& orig);
-    virtual ~Knight();
+    Knight(int x, int y);
+    Knight(int x, int y, ChessBoard * _parentBoard);
+
+    Position findNextMove();
+
 private:
 
 };

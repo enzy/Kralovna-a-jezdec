@@ -21,6 +21,10 @@
       <itemPath>Knight.h</itemPath>
       <itemPath>Pawn.cpp</itemPath>
       <itemPath>Pawn.h</itemPath>
+      <itemPath>Piece.cpp</itemPath>
+      <itemPath>Piece.h</itemPath>
+      <itemPath>Position.cpp</itemPath>
+      <itemPath>Position.h</itemPath>
       <itemPath>Queen.cpp</itemPath>
       <itemPath>Queen.h</itemPath>
       <itemPath>Square.cpp</itemPath>

@@ -75,6 +75,47 @@ void ChessBoard::printToStd() {
 
 }
 
+bool ChessBoard::isOutOfBoard(int x, int y) {
+    return x < 0 || y < 0 || x >= width || y >= height;
+}
+
+bool ChessBoard::movePiece(int fromX, int fromY, int toX, int toY) {
+    if (isOutOfBoard(fromX, fromY) || isOutOfBoard(toX, toY)) return false;
+    if (!board[toX][toY].isEmpty() || board[fromX][fromY].isEmpty()) return false;
+
+    if (board[fromX][fromY].isPawn()) {
+        board[toX][toY].setPawn();
+        board[fromX][fromY].erase();
+        return true;
+    }
+
+    if (board[fromX][fromY].isKnight()) {
+        board[toX][toY].setKnight();
+        board[fromX][fromY].erase();
+        return true;
+    }
+
+    if (board[fromX][fromY].isQueen()) {
+        board[toX][toY].setQueen();
+        board[fromX][fromY].erase();
+        return true;
+    }
+
+    return false;
+}
+
+bool ChessBoard::insertPawn(int x, int y) {
+    if (isOutOfBoard(x, y)) return false;
+    if (!board[x][y].isEmpty()) return false;
+
+    board[x][y].setPawn();
+
+    pawnCount++;
+    freeSquares--;
+
+    return true;
+}
+
 void ChessBoard::insertRandomPawns(int pawnCountToInsert) {
     if (pawnCountToInsert > freeSquares) return;
     int pawnCountInserted = 0;
@@ -87,18 +128,25 @@ void ChessBoard::insertRandomPawns(int pawnCountToInsert) {
         int randomX = rand() % width;
         int randomY = rand() % height;
 
-        if (board[randomX][randomY].isEmpty()) {
-            board[randomX][randomY].setPawn();
+        if (insertPawn(randomX, randomY)) {
             pawnCountInserted++;
         } else {
             continue;
         }
 
     }
+}
 
-    pawnCount += pawnCountInserted;
-    freeSquares -= pawnCountInserted;
+bool ChessBoard::insertKnight(int x, int y) {
+    if (isOutOfBoard(x, y)) return false;
+    if (!board[x][y].isEmpty()) return false;
 
+    board[x][y].setKnight();
+
+    knightCount++;
+    freeSquares--;
+
+    return true;
 }
 
 void ChessBoard::insertRandomKnights(int knightCountToInsert) {
@@ -112,20 +160,28 @@ void ChessBoard::insertRandomKnights(int knightCountToInsert) {
         int randomX = rand() % width;
         int randomY = rand() % height;
 
-        if (board[randomX][randomY].isEmpty()) {
-            board[randomX][randomY].setKnight();
+        if (insertKnight(randomX, randomY)) {
             knightCountInserted++;
         } else {
             continue;
         }
     }
+}
 
-    knightCount += knightCountInserted;
-    freeSquares -= knightCountInserted;
+bool ChessBoard::insertQueen(int x, int y) {
+    if (isOutOfBoard(x, y)) return false;
+    if (!board[x][y].isEmpty()) return false;
+
+    board[x][y].setQueen();
+
+    queenCount++;
+    freeSquares--;
+
+    return true;
 }
 
 void ChessBoard::insertRandomQueens(int queenCountToInsert) {
-    if(queenCountToInsert > freeSquares) return;
+    if (queenCountToInsert > freeSquares) return;
     int queenCountInserted = 0;
 
     srand(time(NULL)); // Initialize random seed
@@ -135,15 +191,11 @@ void ChessBoard::insertRandomQueens(int queenCountToInsert) {
         int randomX = rand() % width;
         int randomY = rand() % height;
 
-        if (board[randomX][randomY].isEmpty()) {
-            board[randomX][randomY].setQueen();
+        if (insertQueen(randomX, randomY)) {
             queenCountInserted++;
         } else {
             continue;
         }
     }
-
-    queenCount += queenCountInserted;
-    freeSquares -= queenCountInserted;
 }
 

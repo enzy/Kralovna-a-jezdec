@@ -8,11 +8,17 @@
 #include "Queen.h"
 
 Queen::Queen() {
+    Piece();
 }
 
-Queen::Queen(const Queen& orig) {
+Queen::Queen(int x, int y) {
+    Piece(x, y);
 }
 
-Queen::~Queen() {
+Queen::Queen(int x, int y, ChessBoard* _parentBoard) {
+    Piece(x, y, _parentBoard);
 }
 
+Position Queen::findNextMove() {
+
+}

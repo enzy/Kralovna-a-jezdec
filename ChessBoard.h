@@ -33,6 +33,83 @@ public:
     virtual ~ChessBoard();
 
     /**
+     * Formated output to std::out
+     */
+    void printToStd();
+
+    /**
+     * Insert to chessboard random placed pawns
+     * @param pawnCountToInsert Number of pawns to insert
+     */
+    void insertRandomPawns(int pawnCountToInsert);
+
+    /**
+     * Insert single pawn on the specific position
+     * @param x from left side
+     * @param y from top side
+     * @return Success of operation (false when piece is full)
+     */
+    bool insertPawn(int x, int y);
+
+    /**
+     * Insert to chessboard random placed knights.
+     * @param knightCountToInsert Number of knights to insert
+     */
+    void insertRandomKnights(int knightCountToInsert);
+
+    /**
+     * Insert single knight on the specific position
+     * @param x from left side
+     * @param y from top side
+     * @return Success of operation (false when piece is full)
+     */
+    bool insertKnight(int x, int y);
+
+    /**
+     * Insert to chessboard random placed queens.
+     * @param queenCountToInsert Number of queens to insert
+     */
+    void insertRandomQueens(int queenCountToInsert);
+
+    /**
+     * Insert single queen on the specific position
+     * @param x from left side
+     * @param y from top side
+     * @return Success of operation (false when piece is full)
+     */
+    bool insertQueen(int x, int y);
+
+    /**
+     * Moves with piece from source to destination coordinations
+     * @param fromX Source piece
+     * @param fromY
+     * @param toX Destination piece
+     * @param toY
+     * @return Success of operation (false when source piece is empty or destination piece is full)
+     */
+    bool movePiece(int fromX, int fromY, int toX, int toY);
+
+    /**
+     * Check position if its in gameplay board
+     * @param x from left corner
+     * @param y from top corner
+     * @return true if position is outside, otherwise false
+     */
+    bool isOutOfBoard(int x, int y);
+
+private:
+    /**
+     * Allocates (2D array) memory using widht and height class variables
+     * @return Success of memory alocation
+     */
+    bool allocateMemory();
+
+    /**
+     * Chessboard (from squares). Creates and indexing from top left corner - board[x][y]
+     */
+    Square ** board;
+
+    /**
      * Chessboard width (in squares)
      */
     int width;
@@ -42,9 +119,9 @@ public:
     int height;
 
     /**
-     * Chessboard (from squares). Creates and indexing from top left corner - board[x][y]
+     * How many free squares remaining on chessboard
      */
-    Square ** board;
+    int freeSquares;
 
     /**
      * Number of pawns on chessboard
@@ -60,63 +137,6 @@ public:
      * Nubmer of knights on chessboard
      */
     int knightCount;
-
-    /**
-     * Formated output to std::out
-     */
-    void printToStd();
-
-    /**
-     * Insert to chessboard random placed pawns
-     * @param pawnCountToInsert Number of pawns to insert
-     */
-    void insertRandomPawns(int pawnCountToInsert);
-
-    /**
-     * Insert single pawn on the specific position
-     * @param x from left side
-     * @param y from top side
-     * @return Success of operation
-     */
-    bool insertPawn(int x, int y);
-
-    /**
-     * Insert to chessboard random placed knights.
-     * @param knightCountToInsert Number of knights to insert
-     */
-    void insertRandomKnights(int knightCountToInsert);
-
-    /**
-     * Insert single knight on the specific position
-     * @param x from left side
-     * @param y from top side
-     * @return Success of operation
-     */
-    bool insertKnight(int x, int y);
-
-    /**
-     * Insert to chessboard random placed queens.
-     * @param queenCountToInsert Number of queens to insert
-     */
-    void insertRandomQueens(int queenCountToInsert);
-
-    /**
-     * Insert single queen on the specific position
-     * @param x from left side
-     * @param y from top side
-     * @return Success of operation
-     */
-    bool insertQueen(int x, int y);
-
-
-private:
-    /**
-     * Allocates (2D array) memory using widht and height class variables
-     * @return Success of memory alocation
-     */
-    bool allocateMemory();
-
-    int freeSquares;
 
 };
 

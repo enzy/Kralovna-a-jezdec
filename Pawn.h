@@ -8,11 +8,14 @@
 #ifndef PAWN_H
 #define	PAWN_H
 
-class Pawn {
+#include "Piece.h"
+
+class Pawn : Piece {
 public:
     Pawn();
-    Pawn(const Pawn& orig);
-    virtual ~Pawn();
+    Pawn(int x, int y);
+    Pawn(int x, int y, ChessBoard * _parentBoard);
+
 private:
 
 };

@@ -8,11 +8,15 @@
 #ifndef QUEEN_H
 #define	QUEEN_H
 
-class Queen {
+#include "Piece.h"
+
+class Queen : Piece {
 public:
     Queen();
-    Queen(const Queen& orig);
-    virtual ~Queen();
+    Queen(int x, int y);
+    Queen(int x, int y, ChessBoard * _parentBoard);
+
+    Position findNextMove();
 private:
 
 };

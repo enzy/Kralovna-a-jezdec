@@ -8,11 +8,19 @@
 #include "Knight.h"
 
 Knight::Knight() {
+    Piece();
 }
 
-Knight::Knight(const Knight& orig) {
+Knight::Knight(int x, int y) {
+    Piece(x, y);
 }
 
-Knight::~Knight() {
+Knight::Knight(int x, int y, ChessBoard* _parentBoard) {
+    Piece(x, y, _parentBoard);
 }
+
+Position Knight::findNextMove() {
+
+}
+
 
