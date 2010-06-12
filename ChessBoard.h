@@ -9,6 +9,7 @@
 #define	_CHESSBOARD_H
 
 #include "Square.h"
+#include "Position.h"
 
 /**
  * ChessBoard Class
@@ -96,6 +97,31 @@ public:
      * @return true if position is outside, otherwise false
      */
     bool isOutOfBoard(int x, int y);
+
+    /**
+     * Array of pawn positions on chessboard
+     */
+    Position * pawnPositions;
+
+    /**
+     * Array of knight positions on chessboard
+     */
+    Position * knightPositions;
+
+    /**
+     * Array of queen positions on chessboard
+     */
+    Position * queenPositions;
+
+    int getPawnCount() {
+        return pawnCount;
+    };
+    int getKnightCount(){
+        return knightCount;
+    };
+    int getQueenCount(){
+        return queenCount;
+    };
 
 private:
     /**

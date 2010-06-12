@@ -41,6 +41,11 @@ bool ChessBoard::allocateMemory() {
     for (int i = 0; i < width; i++) {
         board[i] = new Square[height];
     }
+
+    pawnPositions = new Position[width * height];
+    knightPositions = new Position[width * height];
+    queenPositions = new Position[width * height];
+
     if (board != NULL) return true;
     else return false;
 }
@@ -51,6 +56,10 @@ ChessBoard::~ChessBoard() {
         delete [] board[i];
     }
     delete [] board;
+
+    delete [] pawnPositions;
+    delete [] knightPositions;
+    delete [] queenPositions;
     // TODO : dealokace jednotlich poli
 }
 
@@ -109,8 +118,8 @@ bool ChessBoard::insertPawn(int x, int y) {
     if (!board[x][y].isEmpty()) return false;
 
     board[x][y].setPawn();
-
-    pawnCount++;
+    pawnPositions[pawnCount].x = x;
+    pawnPositions[pawnCount++].y = y;
     freeSquares--;
 
     return true;
@@ -142,8 +151,8 @@ bool ChessBoard::insertKnight(int x, int y) {
     if (!board[x][y].isEmpty()) return false;
 
     board[x][y].setKnight();
-
-    knightCount++;
+    knightPositions[knightCount].x = x;
+    knightPositions[knightCount++].y = y;
     freeSquares--;
 
     return true;
@@ -173,8 +182,8 @@ bool ChessBoard::insertQueen(int x, int y) {
     if (!board[x][y].isEmpty()) return false;
 
     board[x][y].setQueen();
-
-    queenCount++;
+    queenPositions[queenCount].x = x;
+    queenPositions[queenCount++].y = y;
     freeSquares--;
 
     return true;

@@ -10,7 +10,7 @@
 
 #include "Piece.h"
 
-class Knight : Piece {
+class Knight : public Piece {
 public:
     /**
      * Create free knight no position (-1,-1)

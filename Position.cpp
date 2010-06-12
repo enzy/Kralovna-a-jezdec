@@ -17,7 +17,7 @@ Position::Position(int x, int y) {
 }
 
 Position::Position(const Position& orig) {
-    x = orig->x;
-    y = orig->y;
+    x = orig.x;
+    y = orig.y;
 }
 

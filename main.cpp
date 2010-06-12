@@ -16,8 +16,11 @@
  */
 
 #include <cstdlib>
+#include <iostream>
 
 #include "ChessBoard.h"
+#include "Queen.h"
+#include "Knight.h"
 
 using namespace std;
 
@@ -32,8 +35,8 @@ int main(int argc, char** argv) {
 
     // rucni mod - sirka, vyska; pocet pescu; umisteni;
 
-    ChessBoard * hra1 = new ChessBoard(4,4);
-    
+    ChessBoard * hra1 = new ChessBoard(4, 4);
+
     hra1->insertRandomPawns(8);
 
     hra1->insertRandomKnights(1);
@@ -42,8 +45,16 @@ int main(int argc, char** argv) {
 
     hra1->printToStd();
 
+    Queen q1(hra1->queenPositions[0].x, hra1->queenPositions[0].y, hra1);
+    Knight n1(hra1->knightPositions[0].x, hra1->knightPositions[0].y, hra1);
 
-    
+    for (int i = 0; i < hra1->getPawnCount(); i++) {
+        cout << "P" << i << ": " << hra1->pawnPositions[i].x << ", " << hra1->pawnPositions[i].y << endl;
+
+    }
+
+
+
 
     return 0;
 }

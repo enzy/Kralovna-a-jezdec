@@ -8,9 +8,6 @@
 #ifndef _SQUARE_H
 #define	_SQUARE_H
 
-#include "Piece.h"
-
-
 class Square {
 public:
     /**
@@ -21,11 +18,9 @@ public:
      * Custom square type
      * @param pieceType [0 - empty, 1 - pawn, 2 - knight, 3 - queen]
      */
-    Square(int pieceType);
+    Square(int pieceType);    
 
-    Piece * piece;
-
-    bool isPawn();    
+    bool isPawn();
     bool isKnight();
     bool isQueen();
     bool isEmpty();
@@ -44,7 +39,7 @@ private:
     bool hasPiece;
     bool hasPawn;
     bool hasQueen;
-    bool hasKnight;    
+    bool hasKnight;
 
 };
 

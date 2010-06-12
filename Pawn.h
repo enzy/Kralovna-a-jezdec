@@ -10,7 +10,7 @@
 
 #include "Piece.h"
 
-class Pawn : Piece {
+class Pawn : public Piece {
 public:
     Pawn();
     Pawn(int x, int y);

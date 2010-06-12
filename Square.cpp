@@ -6,6 +6,7 @@
  */
 
 #include "Square.h"
+#include "Piece.h"
 
 #include <iostream>
 using namespace std;
@@ -39,7 +40,7 @@ void Square::erase(){
 
 void Square::setKnight() {
     hasPiece = hasKnight = true;
-    hasPawn = hasQueen = false;
+    hasPawn = hasQueen = false;    
 }
 
 void Square::setPawn() {

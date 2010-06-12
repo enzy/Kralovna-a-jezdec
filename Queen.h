@@ -9,8 +9,9 @@
 #define	QUEEN_H
 
 #include "Piece.h"
+#include "ChessBoard.h"
 
-class Queen : Piece {
+class Queen : public Piece {
 public:
     Queen();
     Queen(int x, int y);

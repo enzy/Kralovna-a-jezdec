@@ -30,9 +30,7 @@ public:
      * @param y
      * @param parentBoard chessboard where to place piece
      */
-    Piece(int x, int y, ChessBoard * _parentBoard);
-
-    virtual ~Piece();
+    Piece(int x, int y, ChessBoard * _parentBoard);    
 
     /**
      * Current X position
@@ -53,7 +51,8 @@ public:
      * Finds next move to the closest pawn
      * @return Position to move
      */
-    virtual Position findNextMove();
+    Position findNextMove();
+    
 private:
 
 };
