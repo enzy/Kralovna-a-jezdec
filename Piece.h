@@ -60,6 +60,11 @@ public:
     Position getCurrentPosition();
 
     /**
+     * Position in last turn
+     */
+    Position lastPosition;
+
+    /**
      * Set new position of piece on chessboard
      * @param pos
      */

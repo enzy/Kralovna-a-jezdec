@@ -53,18 +53,17 @@ ChessBoard::~ChessBoard() {
     }
     delete [] board;
 
-    //delete [] pawnPositions;
     pawnPositions.~vector();
     knightPositions.~vector();
     queenPositions.~vector();
-    // TODO : dealokace jednotlich poli
 }
 
 void ChessBoard::printToStd() {
     // Number of rows
     cout << "   ";
     for (int j = 0; j < width; j++) {
-        cout << "  " << j << " ";
+        cout << "  " << j;
+        if (j < 10) cout << " ";
     }
     cout << endl;
 
@@ -75,8 +74,9 @@ void ChessBoard::printToStd() {
             cout << "+---";
         }
         cout << "+" << endl;
-        // Second line        
-        cout << " " << i << " ";
+        // Second line
+        if (i < 10) cout << " ";
+        cout << i << " ";        
         for (int j = 0; j < width; j++) {
             board[j][i].printToStd();
         }

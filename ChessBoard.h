@@ -144,7 +144,7 @@ public:
     /**
      * Array of queen positions on chessboard
      */
-    vector <Position> queenPositions;
+    vector<Position> queenPositions;
 
     int getPawnCount() {
         return pawnCount;
