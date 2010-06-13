@@ -10,6 +10,7 @@
 
 #include "Square.h"
 #include "Position.h"
+#include <vector>
 
 /**
  * ChessBoard Class
@@ -91,6 +92,22 @@ public:
     bool movePiece(int fromX, int fromY, int toX, int toY);
 
     /**
+     * Moves with piece from source to destination positions
+     * @param from
+     * @param to
+     * @return Success of operation (false when source piece is empty or destination piece is full)
+     */
+    bool movePiece(Position from, Position to);
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return true when field is empty
+     */
+    bool isPieceEmpty(int x, int y);
+
+    /**
      * Check position if its in gameplay board
      * @param x from left corner
      * @param y from top corner
@@ -99,28 +116,54 @@ public:
     bool isOutOfBoard(int x, int y);
 
     /**
+     * Capture piece on position if its possible
+     * @param x
+     * @param y
+     * @return true when capture, false when impossible
+     */
+    bool capturePiece(int x, int y);
+
+    /**
+     * Capture piece on position if its possible
+     * @param pos position
+     * @return true when capture, false when impossible
+     */
+    bool capturePiece(Position pos);
+
+    /**
      * Array of pawn positions on chessboard
      */
-    Position * pawnPositions;
+    //Position * pawnPositions;
+    vector<Position> pawnPositions;
 
     /**
      * Array of knight positions on chessboard
      */
-    Position * knightPositions;
+    vector<Position> knightPositions;
 
     /**
      * Array of queen positions on chessboard
      */
-    Position * queenPositions;
+    vector <Position> queenPositions;
 
     int getPawnCount() {
         return pawnCount;
     };
-    int getKnightCount(){
+
+    int getKnightCount() {
         return knightCount;
     };
-    int getQueenCount(){
+
+    int getQueenCount() {
         return queenCount;
+    };
+
+    int getWidth() {
+        return width;
+    };
+
+    int getHeight() {
+        return height;
     };
 
 private:

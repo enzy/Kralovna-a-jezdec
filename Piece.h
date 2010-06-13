@@ -30,7 +30,7 @@ public:
      * @param y
      * @param parentBoard chessboard where to place piece
      */
-    Piece(int x, int y, ChessBoard * _parentBoard);    
+    Piece(int x, int y, ChessBoard * _parentBoard);
 
     /**
      * Current X position
@@ -52,7 +52,51 @@ public:
      * @return Position to move
      */
     Position findNextMove();
-    
+
+    /**
+     * Get current position of piece on chessboard, counted from posX, posY variables
+     * @return actual position
+     */
+    Position getCurrentPosition();
+
+    /**
+     * Set new position of piece on chessboard
+     * @param pos
+     */
+    void setPosition(Position newPos);
+
+    /**
+     * Get distance from-to positions
+     * @param fromX
+     * @param fromY
+     * @param toX
+     * @param toY
+     * @return distance
+     */
+    double getDistance(int fromX, int fromY, int toX, int toY);
+
+    /**
+     * Get distance from-to positions
+     * @param fromPosition
+     * @param toPosition
+     * @return distance
+     */
+    double getDistance(Position fromPosition, Position toPosition);
+    /**
+     * Get distance from actual position to destination
+     * @param toX
+     * @param toY
+     * @return distance
+     */
+    double getDistanceTo(int toX, int toY);
+
+    /**
+     * Get distance from actual position to destination
+     * @param toPosition
+     * @return distance
+     */
+    double getDistanceTo(Position toPosition);
+
 private:
 
 };

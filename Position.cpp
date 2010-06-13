@@ -7,16 +7,16 @@
 
 #include "Position.h"
 
-Position::Position() {
+tPosition::tPosition() {
     x = y = 0;
 }
 
-Position::Position(int x, int y) {
+tPosition::tPosition(int x, int y) {
     this->x = x;
     this->y = y;
 }
 
-Position::Position(const Position& orig) {
+tPosition::tPosition(const tPosition& orig) {
     x = orig.x;
     y = orig.y;
 }

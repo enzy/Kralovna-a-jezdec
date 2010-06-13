@@ -42,10 +42,6 @@ bool ChessBoard::allocateMemory() {
         board[i] = new Square[height];
     }
 
-    pawnPositions = new Position[width * height];
-    knightPositions = new Position[width * height];
-    queenPositions = new Position[width * height];
-
     if (board != NULL) return true;
     else return false;
 }
@@ -57,26 +53,38 @@ ChessBoard::~ChessBoard() {
     }
     delete [] board;
 
-    delete [] pawnPositions;
-    delete [] knightPositions;
-    delete [] queenPositions;
+    //delete [] pawnPositions;
+    pawnPositions.~vector();
+    knightPositions.~vector();
+    queenPositions.~vector();
     // TODO : dealokace jednotlich poli
 }
 
 void ChessBoard::printToStd() {
+    // Number of rows
+    cout << "   ";
+    for (int j = 0; j < width; j++) {
+        cout << "  " << j << " ";
+    }
+    cout << endl;
+
     for (int i = 0; i < height; i++) {
+        // First line
+        cout << "   ";
         for (int j = 0; j < width; j++) {
             cout << "+---";
         }
-
         cout << "+" << endl;
-
+        // Second line        
+        cout << " " << i << " ";
         for (int j = 0; j < width; j++) {
             board[j][i].printToStd();
         }
         cout << "|" << endl;
     }
 
+    // Last line
+    cout << "   ";
     for (int i = 0; i < width; i++) {
         cout << "+---";
     }
@@ -84,8 +92,55 @@ void ChessBoard::printToStd() {
 
 }
 
+bool ChessBoard::capturePiece(int x, int y) {
+    if (board[x][y].isEmpty()) return false;
+
+    if (board[x][y].isPawn()) {
+        // Find and move pawn outside of board
+        for (int i = 0; i < pawnCount; i++) {
+            if (pawnPositions[i].x == x && pawnPositions[i].y == y) {
+                pawnPositions.erase(pawnPositions.begin() + i);
+                break;
+            }
+        }
+        pawnCount--;
+    } else if (board[x][y].isKnight()) {
+        // Find and move knight outside of board
+        for (int i = 0; i < knightCount; i++) {
+            if (knightPositions[i].x == x && knightPositions[i].y == y) {
+                knightPositions.erase(knightPositions.begin() + i);
+                break;
+            }
+        }
+        knightCount--;
+    } else if (board[x][y].isQueen()) {
+        // Find and move knight outside of board
+        for (int i = 0; i < queenCount; i++) {
+            if (queenPositions[i].x == x && queenPositions[i].y == y) {
+                queenPositions.erase(queenPositions.begin() + i);
+                break;
+            }
+        }
+        queenCount--;
+    } else {
+        return false;
+    }
+
+    board[x][y].erase();
+    return true;
+}
+
+bool ChessBoard::capturePiece(Position pos) {
+    return capturePiece(pos.x, pos.y);
+}
+
 bool ChessBoard::isOutOfBoard(int x, int y) {
     return x < 0 || y < 0 || x >= width || y >= height;
+}
+
+bool ChessBoard::isPieceEmpty(int x, int y) {
+    //if (isOutOfBoard(x, y)) return false;
+    return board[x][y].isEmpty();
 }
 
 bool ChessBoard::movePiece(int fromX, int fromY, int toX, int toY) {
@@ -113,13 +168,22 @@ bool ChessBoard::movePiece(int fromX, int fromY, int toX, int toY) {
     return false;
 }
 
+bool ChessBoard::movePiece(Position from, Position to) {
+    return movePiece(from.x, from.y, to.x, to.y);
+}
+
 bool ChessBoard::insertPawn(int x, int y) {
     if (isOutOfBoard(x, y)) return false;
     if (!board[x][y].isEmpty()) return false;
 
     board[x][y].setPawn();
-    pawnPositions[pawnCount].x = x;
-    pawnPositions[pawnCount++].y = y;
+
+    Position newPawnPosition;
+    newPawnPosition.x = x;
+    newPawnPosition.y = y;
+    pawnPositions.push_back(newPawnPosition);
+
+    pawnCount++;
     freeSquares--;
 
     return true;
@@ -151,8 +215,13 @@ bool ChessBoard::insertKnight(int x, int y) {
     if (!board[x][y].isEmpty()) return false;
 
     board[x][y].setKnight();
-    knightPositions[knightCount].x = x;
-    knightPositions[knightCount++].y = y;
+
+    Position newKnightPosition;
+    newKnightPosition.x = x;
+    newKnightPosition.y = y;
+    knightPositions.push_back(newKnightPosition);
+
+    knightCount++;
     freeSquares--;
 
     return true;
@@ -182,8 +251,13 @@ bool ChessBoard::insertQueen(int x, int y) {
     if (!board[x][y].isEmpty()) return false;
 
     board[x][y].setQueen();
-    queenPositions[queenCount].x = x;
-    queenPositions[queenCount++].y = y;
+
+    Position newQueenPosition;
+    newQueenPosition.x = x;
+    newQueenPosition.y = y;
+    queenPositions.push_back(newQueenPosition);
+
+    queenCount++;
     freeSquares--;
 
     return true;

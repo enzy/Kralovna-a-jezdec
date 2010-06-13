@@ -8,31 +8,53 @@
 #ifndef POSITION_H
 #define	POSITION_H
 
-class Position {
+#include <iostream>
+using namespace std;
+
+class tPosition {
 public:
     /**
      * Zero position [0, 0]
      */
-    Position();
+    tPosition();
 
     /**
      * Custom position [x, y]
      * @param x
      * @param y
      */
-    Position(int x, int y);
+    tPosition(int x, int y);
 
     /**
      * Copy constructor
      * @param orig
      */
-    Position(const Position& orig);
+    tPosition(const tPosition& orig);
+
+    /**
+     * output in format: x, y
+     */
+    friend std::ostream & operator<<(std::ostream& os, const tPosition& pos) {
+        int x, y;
+        x = pos.x;
+        y = pos.y;
+        os << x << ", " << y;
+        return os;
+    };
+
+    bool operator==(tPosition pos) const {
+        return (x == pos.x && y == pos.y);
+    }
+    bool operator!=(tPosition pos) const{
+        return !(x == pos.x && y == pos.y);
+    }
 
     int x;
     int y;
 private:
 
 };
+typedef tPosition Position;
 
 #endif	/* POSITION_H */
 

@@ -8,13 +8,16 @@
 #include "Pawn.h"
 
 Pawn::Pawn() {
-    Piece();
+    posX = posY = -1;
 }
 
 Pawn::Pawn(int x, int y) {
-    Piece(x, y);
+    posX = x;
+    posY = y;
 }
 
 Pawn::Pawn(int x, int y, ChessBoard* _parentBoard) {
-    Piece(x, y, _parentBoard);
+    posX = x;
+    posY = y;
+    parentBoard = _parentBoard;
 }

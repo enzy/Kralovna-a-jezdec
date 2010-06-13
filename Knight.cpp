@@ -8,15 +8,18 @@
 #include "Knight.h"
 
 Knight::Knight() {
-    Piece();
+    posX = posY = -1;
 }
 
 Knight::Knight(int x, int y) {
-    Piece(x, y);
+    posX = x;
+    posY = y;
 }
 
-Knight::Knight(int x, int y, ChessBoard* _parentBoard) {
-    Piece(x, y, _parentBoard);
+Knight::Knight(int x, int y, ChessBoard * _parentBoard) {
+    posX = x;
+    posY = y;
+    parentBoard = _parentBoard;
 }
 
 Position Knight::findNextMove() {
